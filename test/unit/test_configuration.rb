@@ -74,4 +74,13 @@ class BrokenConfigurationTest < Test::Unit::TestCase
     Object.const_set :RAILS_ENV, "test"
   end
 
+  def test_headjs_path
+    Jammit.headjs_path == "head.min.js"
+  end
+
+  def test_headjs_custom_path
+    Jammit.load_configuration('test/config/assets-headjs.yml')
+    assert Jammit.headjs_path == "vendor/head.min.js"
+  end
+
 end
